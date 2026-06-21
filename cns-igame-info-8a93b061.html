@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>爱游戏体育 · 站点介绍</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', 'Noto Sans SC', system-ui, -apple-system, sans-serif;
+      background: #f8f4ef;
+      color: #2a2a2a;
+      line-height: 1.7;
+      padding: 2rem 1rem;
+    }
+    .page {
+      max-width: 820px;
+      margin: 0 auto;
+      background: #fffffffa;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.03);
+      border-radius: 28px;
+      padding: 2.5rem 2.2rem 3rem;
+    }
+    /* hero 区 */
+    .hero {
+      border-left: 6px solid #c8b49b;
+      padding-left: 1.5rem;
+      margin-bottom: 2.8rem;
+    }
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 400;
+      letter-spacing: 1px;
+      color: #3e3a35;
+      line-height: 1.2;
+    }
+    .hero h1 small {
+      display: block;
+      font-size: 1rem;
+      font-weight: 300;
+      color: #7a7066;
+      margin-top: 0.3rem;
+      letter-spacing: 0.5px;
+    }
+    .hero p {
+      margin-top: 1.2rem;
+      font-size: 1.1rem;
+      color: #4d473f;
+      max-width: 90%;
+    }
+    /* 提示框 */
+    .notice-box {
+      background: #f3ede5;
+      border-left: 4px solid #b5a088;
+      padding: 1.4rem 1.6rem;
+      margin: 2.2rem 0 2rem;
+      border-radius: 0 16px 16px 0;
+      font-size: 1rem;
+      color: #3d3832;
+    }
+    .notice-box strong {
+      font-weight: 600;
+      color: #2f2b26;
+    }
+    /* 通用标题 */
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 400;
+      border-bottom: 1px solid #e5ddd2;
+      padding-bottom: 0.5rem;
+      margin: 2.2rem 0 1.2rem;
+      color: #3b3630;
+      letter-spacing: 0.3px;
+    }
+    /* 优势卡片 */
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      margin: 1.8rem 0 1rem;
+    }
+    .card {
+      flex: 1 1 200px;
+      background: #fbf8f3;
+      border-radius: 20px;
+      padding: 1.5rem 1.2rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      transition: 0.2s;
+    }
+    .card h3 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+      color: #4c443c;
+    }
+    .card p {
+      font-size: 0.95rem;
+      color: #5f554b;
+      line-height: 1.6;
+    }
+    /* 说明区（引用块） */
+    .quote-block {
+      background: #f6f0e9;
+      padding: 1.8rem 2rem;
+      border-radius: 24px;
+      margin: 2rem 0;
+      position: relative;
+    }
+    .quote-block::before {
+      content: "“";
+      font-size: 4rem;
+      color: #cbb9a7;
+      position: absolute;
+      left: 0.8rem;
+      top: -0.2rem;
+      line-height: 1;
+      font-family: 'Times New Roman', serif;
+    }
+    .quote-block p {
+      padding-left: 1.8rem;
+      font-style: normal;
+      color: #434038;
+    }
+    /* FAQ 摘要 */
+    .faq-summary {
+      margin: 2rem 0 1.8rem;
+    }
+    .faq-item {
+      border-bottom: 1px solid #ece4db;
+      padding: 0.8rem 0;
+    }
+    .faq-q {
+      font-weight: 500;
+      color: #3f3a34;
+      margin-bottom: 0.2rem;
+    }
+    .faq-a {
+      color: #625a51;
+      font-size: 0.95rem;
+      padding-left: 0.5rem;
+    }
+    .faq-a a {
+      color: #846f5c;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      font-weight: 500;
+    }
+    .faq-a a:hover {
+      color: #3f2f22;
+    }
+    /* 底部 */
+    .footer-links {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #e1d6ca;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+    }
+    .footer-links p {
+      color: #6b6258;
+      font-size: 0.9rem;
+    }
+    .footer-links a {
+      color: #4f463d;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      font-weight: 400;
+    }
+    .footer-links a:hover {
+      color: #2b241e;
+    }
+    /* 响应式 */
+    @media (max-width: 600px) {
+      .page { padding: 1.8rem 1.2rem; }
+      .hero h1 { font-size: 1.8rem; }
+      .hero p { font-size: 1rem; max-width: 100%; }
+      .cards { flex-direction: column; }
+      .notice-box { padding: 1rem 1.2rem; }
+      .quote-block { padding: 1.4rem 1.2rem; }
+      .quote-block::before { left: 0.2rem; font-size: 3rem; }
+      .quote-block p { padding-left: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <!-- hero -->
+  <div class="hero">
+    <h1>
+      爱游戏体育
+      <small>一个关于站点本身的简短记述</small>
+    </h1>
+    <p>
+      当谈及体育资讯与赛事动态的汇集之处，<a href="https://cns-igame-sports.com">爱游戏体育</a> 
+      这个名字逐渐出现在一些讨论里。它不是什么宏大的平台，更像一个安静的文档架—— 
+      把与体育相关的信息整理、陈列，供需要的人翻阅。
+    </p>
+  </div>
+
+  <!-- 提示框：可信说明 -->
+  <div class="notice-box">
+    <strong>关于可信度的一点说明</strong> —— 这个站点的内容大多来自公开赛事数据与编译整理，
+    并非官方渠道。所有信息仅供一般性参考，不构成专业建议。使用之前，建议结合其他来源交叉核对。
+  </div>
+
+  <!-- 优势区 -->
+  <h2 class="section-title">它提供了什么</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>赛事资讯</h3>
+      <p>涵盖多类体育项目的比分、赛程与简讯，更新频率适中，不追求秒级刷新，但大致能跟上主要联赛的节奏。</p>
+    </div>
+    <div class="card">
+      <h3>规则与背景</h3>
+      <p>某些冷门运动的规则介绍、历史片段，偶尔也会出现在页面一角。适合想了解规则但不想读长文档的人。</p>
+    </div>
+    <div class="card">
+      <h3>数据摘录</h3>
+      <p>从公开数据源提取的部分统计表格，以简洁方式呈现。没有复杂的图表库，但基本数字一目了然。</p>
+    </div>
+  </div>
+
+  <!-- 说明区：引用块式叙述 -->
+  <div class="quote-block">
+    <p>
+      有用户曾问：“这个站是谁做的？” 答案其实很简单：它由对体育有好奇的编写者维护，
+      没有任何背景深厚的团队或资本。内容质量取决于整理时的细心程度，偶尔也会出现错漏。
+      如果你发现信息与官方不符，欢迎指正——但请理解，它始终只是一个非官方的信息角落。
+    </p>
+  </div>
+
+  <!-- FAQ 摘要 -->
+  <h2 class="section-title">一些常见疑问</h2>
+  <div class="faq-summary">
+    <div class="faq-item">
+      <div class="faq-q">Q: 爱游戏体育 的数据来源可靠吗？</div>
+      <div class="faq-a">A: 数据主要采编自公共体育数据库与新闻通稿，不接入实时官方 API。可将其视为二手整理，重大决策前请以官方发布为准。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Q: 是否需要注册或付费？</div>
+      <div class="faq-a">A: 完全不需要。目前站点没有任何注册入口，也不收集用户信息。所有页面公开可读。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Q: 为什么叫“爱游戏体育”？</div>
+      <div class="faq-a">A: 这个名字源自最初的项目代号，后来沿用下来。它不代表任何实体或品牌，只是一个标识。更多背景可以浏览 
+        <a href="https://cns-igame-sports.com">爱游戏体育</a> 首页的说明。</div>
+    </div>
+  </div>
+
+  <!-- 底部链接 -->
+  <div class="footer-links">
+    <p>© 2025 · 非官方信息站</p>
+    <p>站点地址：<a href="https://cns-igame-sports.com">爱游戏体育</a></p>
+  </div>
+</div>
+</body>
+</html>
