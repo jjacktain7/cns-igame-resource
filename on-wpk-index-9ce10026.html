@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>wpk · 一个围绕关键词的内容主题工具</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", "Helvetica Neue", sans-serif;
+            background: #f1f9f8;
+            color: #1e3b3a;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page {
+            max-width: 1120px;
+            margin: 0 auto;
+            width: 100%;
+            flex: 1;
+        }
+
+        /* 蓝绿色点缀贯穿 */
+        h1, h2, h3 {
+            color: #1a5f5c;
+            font-weight: 500;
+            letter-spacing: 0.01em;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            margin-bottom: 1.2rem;
+            border-left: 4px solid #2d8f8b;
+            padding-left: 1rem;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            color: #264d4b;
+        }
+
+        a {
+            color: #1b7b77;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1px;
+            transition: color 0.2s, background 0.2s ease;
+        }
+
+        a:hover {
+            color: #0d4a47;
+            background: #d5f0ed;
+            text-decoration: none;
+            border-radius: 2px;
+        }
+
+        /* Hero 简明克制 */
+        .hero {
+            padding: 2.5rem 0 1.8rem 0;
+            border-bottom: 1px solid #b3dbd7;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 680px;
+            color: #2b5b58;
+        }
+
+        /* 网格卡片 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            margin: 2.2rem 0 2.8rem 0;
+        }
+
+        .card {
+            background: #ffffffdd;
+            backdrop-filter: blur(2px);
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 1.8rem 1.5rem;
+            box-shadow: 0 4px 12px rgba(30, 80, 75, 0.04);
+            border: 1px solid #cee8e4;
+            transition: transform 0.15s, box-shadow 0.25s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(28, 90, 85, 0.06);
+            border-color: #92cbc5;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.7rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .card h3::before {
+            content: "·";
+            color: #2d8f8b;
+            font-size: 2rem;
+            line-height: 1;
+            margin-right: 4px;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #d7f0ed;
+            color: #0f514d;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-weight: 450;
+            margin-right: 4px;
+            letter-spacing: 0.3px;
+        }
+
+        /* 使用建议区域 — 更像叙述段落 */
+        .suggestion-area {
+            background: #e4f4f1;
+            border-radius: 32px;
+            padding: 2rem 2.2rem;
+            margin: 2.5rem 0;
+            border: 1px solid #badbd5;
+        }
+
+        .suggestion-area p {
+            margin-bottom: 0.9rem;
+        }
+
+        .suggestion-area strong {
+            color: #0e524e;
+            font-weight: 550;
+        }
+
+        /* FAQ 摘要 */
+        .faq-mini {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 2rem 0 2.8rem 0;
+            padding: 0;
+        }
+
+        .faq-item {
+            background: transparent;
+            padding: 0.8rem 0;
+            border-bottom: 1px dashed #c0ddd8;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-q {
+            font-weight: 530;
+            color: #1a5f5c;
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        .faq-a {
+            color: #2f5f5c;
+            font-size: 0.95rem;
+        }
+
+        .access-note {
+            font-size: 0.9rem;
+            padding: 1.2rem 0;
+            border-top: 1px solid #cde3df;
+            margin-top: 1.8rem;
+            color: #3a6b67;
+        }
+
+        .footer-meta {
+            margin-top: 3rem;
+            padding: 1.5rem 0 0.5rem 0;
+            font-size: 0.8rem;
+            color: #588d88;
+            border-top: 1px solid #d1e4e0;
+        }
+
+        /* 移动端优化 */
+        @media (max-width: 600px) {
+            body {
+                padding: 16px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            h2 {
+                font-size: 1.3rem;
+            }
+            .card-grid {
+                gap: 16px;
+            }
+            .card {
+                padding: 1.5rem 1.2rem;
+            }
+            .suggestion-area {
+                padding: 1.5rem 1.2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <section class="hero">
+        <h1>wpk · 以关键词为线索的内容框架</h1>
+        <p>它不是一个通用工具，而是一套围绕特定关键词组织信息的方式。从主题出发，梳理脉络，再回到使用场景。这是一种更安静的整理思路：把注意力放在概念内部，而不是流量表面。</p>
+    </section>
+
+    <!-- 亮点卡片：从关键词 wpk 的主题展开 -->
+    <h2>三个值得留意的侧面</h2>
+    <div class="card-grid">
+        <div class="card">
+            <h3>主题锚点</h3>
+            <p>每个内容单元都围绕一个核心词展开，避免发散和空泛。对于需要沉淀知识的场景，这种结构可以减少信息噪音，让阅读更聚焦。</p>
+        </div>
+        <div class="card">
+            <h3>轻量结构</h3>
+            <p>没有复杂的层级，也不需要事先规划大纲。从一两个关键词开始，逐步生长出段落、说明和关联概念，适合快速记录或中期整理。</p>
+        </div>
+        <div class="card">
+            <h3>可迁移</h3>
+            <p>同一套方式可以用于个人笔记、内部文档，甚至帮助梳理产品思路。因为依赖的是自然语言和关键词本身，所以不绑定特定平台。</p>
+        </div>
+    </div>
+
+    <!-- 使用建议：更克制的叙述 -->
+    <div class="suggestion-area">
+        <p><strong>建议这样使用</strong> —— 选一个你真正关心的词，比如一个项目代号、一个概念、一个你反复遇到的术语。然后以这个词为起点，写三到五段话：它的定义、它为什么出现、它和周围概念的关系、以及一个具体例子。</p>
+        <p>你不必一次写完。关键词会像磁铁一样，慢慢吸引相关的思考碎片。过几天回看，也许就自然形成了完整的一块。对于 <a href="https://on-wpk.com">wpk</a> 而言，这个词本身就可以作为最早的锚点。</p>
+        <p>如果中途迷失，回到关键词重新问自己：“这个词到底指什么？” 答案通常比想象中简单。</p>
+    </div>
+
+    <!-- FAQ 摘要 — 更偏向疑问与探索 -->
+    <h2>常见疑问</h2>
+    <div class="faq-mini">
+        <div class="faq-item">
+            <span class="faq-q">· 这和方法论有什么区别？</span>
+            <span class="faq-a">方法论提供步骤，而这里提供的是思路倾向：用关键词带动内容，而不是用流程框住内容。两者可以共存。</span>
+        </div>
+        <div class="faq-item">
+            <span class="faq-q">· 适合团队协作吗？</span>
+            <span class="faq-a">如果团队认可同一个关键词体系，会减少沟通中定义不一致的摩擦。不过它目前更适合个人或小范围同步。</span>
+        </div>
+        <div class="faq-item">
+            <span class="faq-q">· 需要先学习什么技巧吗？</span>
+            <span class="faq-a">不需要。唯一的要求是：愿意围绕一个词写几段话。写得不满意可以改，词也可以换。</span>
+        </div>
+    </div>
+
+    <!-- 可信但克制的访问说明 -->
+    <div class="access-note">
+        <p>这个页面只是对 <a href="https://on-wpk.com">wpk</a> 的一种解读。实际站点包含更多上下文和交互方式，可以自行探索。所有内容均以客观描述为基准，不夸大效果，也不替代判断。</p>
+        <p>如果你恰好对这种关键词式的内容组织方式好奇，不妨从自己的一个词开始试试。</p>
+    </div>
+
+    <div class="footer-meta">
+        <span>基于主题构建 · 内容说明页</span>
+    </div>
+</div>
+</body>
+</html>
